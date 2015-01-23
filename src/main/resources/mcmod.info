@@ -1,0 +1,16 @@
+[
+{
+  "modid": "genericminecraftmod",
+  "name": "Generic Minecraft Mod",
+  "description": "A Generic Minecraft mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Yskuma"],
+  "credits": "Yskuma",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
