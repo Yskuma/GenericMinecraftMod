@@ -1,0 +1,7 @@
+# Generic Mod Language File - English
+# @author Yskuma
+
+itemGroup.GenericMinecraftMod=Generic Mod
+
+# Blocks
+tile.oreGenericMod.name=Generic Ore
