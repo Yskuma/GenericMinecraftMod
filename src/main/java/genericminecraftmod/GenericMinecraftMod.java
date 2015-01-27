@@ -12,6 +12,7 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 @Mod(modid = GenericMinecraftMod.MODID, version = GenericMinecraftMod.VERSION)
 public class GenericMinecraftMod
@@ -37,6 +38,7 @@ public class GenericMinecraftMod
         RegisterOres();
         RegisterMachines();
         RegisterItems();
+        RegisterSmeltingRecipes();
     }
 
     private static void RegisterOres() {
@@ -52,6 +54,10 @@ public class GenericMinecraftMod
     private static void RegisterMachines() {
         blockGenericModFurnace = new GenericFurnaceBlock();
         GameRegistry.registerBlock(blockGenericModFurnace, blockGenericModFurnace.getUnlocalizedName());
+    }
+
+    private static void RegisterSmeltingRecipes(){
+        GameRegistry.addSmelting(blockGenericModOre, new ItemStack(itemGenericModIngot), 1);
     }
 
 }
