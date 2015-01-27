@@ -6,9 +6,17 @@ itemGroup.GenericMinecraftMod=Generic Mod
 # Blocks
 tile.oreGenericMod.name=Generic Ore
 item.genericIngot.name=Generic Ingot
+
 tile.furnaceGenericMod.name=Generic Slightly Better Furnace
+
 item.genericAxe.name=Generic Axe
 item.genericPickaxe.name=Generic Pickaxe
 item.genericShovel.name=Generic Shovel
 item.genericHoe.name=Generic Hoe
 item.genericSword.name=Generic Sword
+
+item.genericHelm.name=Generic Helm
+item.genericChestplate.name=Generic Chestplate
+item.genericLegs.name=Generic Legs
+item.genericBoots.name=Generic Boots
+

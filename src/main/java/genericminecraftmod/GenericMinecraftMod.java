@@ -5,6 +5,10 @@ import genericminecraftmod.block.GenericOreBlock;
 import genericminecraftmod.block.GenericFurnaceBlock;
 import cpw.mods.fml.common.registry.GameRegistry;
 import genericminecraftmod.item.GenericIngot;
+import genericminecraftmod.item.armor.ItemGenericBoots;
+import genericminecraftmod.item.armor.ItemGenericChest;
+import genericminecraftmod.item.armor.ItemGenericHelm;
+import genericminecraftmod.item.armor.ItemGenericLegs;
 import genericminecraftmod.item.tools.*;
 import genericminecraftmod.proxy.CommonProxy;
 import net.minecraft.block.Block;
@@ -49,6 +53,11 @@ public class GenericMinecraftMod
     public static Item itemGenericHoe;
     public static Item itemGenericSword;
 
+    public static Item itemGenericHelm;
+    public static Item itemGenericChestplate;
+    public static Item itemGenericLegs;
+    public static Item itemGenericBoots;
+
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
@@ -83,6 +92,17 @@ public class GenericMinecraftMod
         itemGenericSword = new ItemGenericSword();
         GameRegistry.registerItem(itemGenericSword, itemGenericSword.getUnlocalizedName());
 
+        itemGenericHelm = new ItemGenericHelm();
+        GameRegistry.registerItem(itemGenericHelm, itemGenericHelm.getUnlocalizedName());
+
+        itemGenericChestplate = new ItemGenericChest();
+        GameRegistry.registerItem(itemGenericChestplate, itemGenericChestplate.getUnlocalizedName());
+
+        itemGenericLegs= new ItemGenericLegs();
+        GameRegistry.registerItem(itemGenericLegs, itemGenericLegs.getUnlocalizedName());
+
+        itemGenericBoots = new ItemGenericBoots();
+        GameRegistry.registerItem(itemGenericBoots, itemGenericBoots.getUnlocalizedName());
     }
 
     private static void RegisterMachines() {
@@ -96,6 +116,11 @@ public class GenericMinecraftMod
         GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericPickaxe, "III", " S ", " S ", 'I', itemGenericModIngot, 'S', new ItemStack(Items.stick, 1, 0)));
         GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericShovel, " I ", " S ", " S ", 'I', itemGenericModIngot, 'S', new ItemStack(Items.stick, 1, 0)));
         GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericSword, " I ", " I ", " S ", 'I', itemGenericModIngot, 'S', new ItemStack(Items.stick, 1, 0)));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericHelm, "III", "I I", "   ", 'I', itemGenericModIngot));
+        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericChestplate, "I I", "III", "III", 'I', itemGenericModIngot));
+        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericLegs, "III", "I I", "I I", 'I', itemGenericModIngot));
+        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericBoots, "   ", "I I", "I I", 'I', itemGenericModIngot));
 
     }
 
