@@ -52,7 +52,6 @@ public class GenericMinecraftMod
     private static void RegisterMachines() {
         blockGenericModFurnace = new GenericFurnaceBlock();
         GameRegistry.registerBlock(blockGenericModFurnace, blockGenericModFurnace.getUnlocalizedName());
-        System.out.println(blockGenericModFurnace.getItemIconName());
     }
 
 }
