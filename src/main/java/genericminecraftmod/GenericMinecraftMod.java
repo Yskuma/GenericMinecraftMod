@@ -3,12 +3,14 @@ package genericminecraftmod;
 import cpw.mods.fml.common.SidedProxy;
 import genericminecraftmod.block.GenericOreBlock;
 import cpw.mods.fml.common.registry.GameRegistry;
+import genericminecraftmod.item.GenericIngot;
 import genericminecraftmod.proxy.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import net.minecraft.item.Item;
 
 @Mod(modid = GenericMinecraftMod.MODID, version = GenericMinecraftMod.VERSION)
 public class GenericMinecraftMod
@@ -25,17 +27,23 @@ public class GenericMinecraftMod
     //private static final String[] LANGUAGES_SUPPORTED = new String[] { "en_US"};
 
     public static Block blockGenericModOre;
+    public static Item itemGenericModIngot;
 
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
         RegisterOres();
+        RegisterItems();
     }
 
     private static void RegisterOres() {
         blockGenericModOre = new GenericOreBlock();
         GameRegistry.registerBlock(blockGenericModOre, blockGenericModOre.getUnlocalizedName());
-        System.out.println(blockGenericModOre.getItemIconName());
+    }
+
+    private static void RegisterItems() {
+        itemGenericModIngot = new GenericIngot();
+        GameRegistry.registerItem(itemGenericModIngot, itemGenericModIngot.getUnlocalizedName());
     }
 
 

@@ -5,3 +5,4 @@ itemGroup.GenericMinecraftMod=Generic Mod
 
 # Blocks
 tile.oreGenericMod.name=Generic Ore
+item.genericIngot.name=Generic Ingot
