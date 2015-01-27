@@ -5,3 +5,4 @@ itemGroup.GenericMinecraftMod=Generic Mod
 
 # Blocks
 tile.oreGenericMod.name=Generic Ore
+tile.furnaceGenericMod.name=Generic Slightly Better Furnace

@@ -2,6 +2,7 @@ package genericminecraftmod;
 
 import cpw.mods.fml.common.SidedProxy;
 import genericminecraftmod.block.GenericOreBlock;
+import genericminecraftmod.block.GenericFurnaceBlock;
 import cpw.mods.fml.common.registry.GameRegistry;
 import genericminecraftmod.proxy.CommonProxy;
 import net.minecraft.block.Block;
@@ -25,11 +26,13 @@ public class GenericMinecraftMod
     //private static final String[] LANGUAGES_SUPPORTED = new String[] { "en_US"};
 
     public static Block blockGenericModOre;
+    public static Block blockGenericModFurnace;
 
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
         RegisterOres();
+        RegisterMachines();
     }
 
     private static void RegisterOres() {
@@ -38,5 +41,10 @@ public class GenericMinecraftMod
         System.out.println(blockGenericModOre.getItemIconName());
     }
 
+    private static void RegisterMachines() {
+        blockGenericModFurnace = new GenericFurnaceBlock();
+        GameRegistry.registerBlock(blockGenericModFurnace, blockGenericModFurnace.getUnlocalizedName());
+        System.out.println(blockGenericModFurnace.getItemIconName());
+    }
 
 }
