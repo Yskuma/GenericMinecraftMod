@@ -1,7 +1,9 @@
 package genericminecraftmod;
 
+import cpw.mods.fml.common.SidedProxy;
 import genericminecraftmod.block.GenericOreBlock;
 import cpw.mods.fml.common.registry.GameRegistry;
+import genericminecraftmod.proxy.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.Mod;
@@ -14,14 +16,8 @@ public class GenericMinecraftMod
     public static final String MODID = "genericminecraftmod";
     public static final String VERSION = "0.2";
 
-    //public static final String RESOURCE_PATH = "/assets/genericminecraftmod/";
-    //public static final String TEXTURE_NAME_PREFIX = "genericminecraftmod:";
-
-    //public static final String TEXTURE_DIRECTORY = RESOURCE_PATH + "textures/";
-    //public static final String GUI_DIRECTORY = TEXTURE_NAME_PREFIX + "textures/gui/";
-    //public static final String BLOCK_TEXTURE_DIRECTORY = TEXTURE_DIRECTORY + "blocks/";
-    //public static final String ITEM_TEXTURE_DIRECTORY = TEXTURE_DIRECTORY + "items/";
-    //public static final String MODEL_TEXTURE_DIRECTORY = TEXTURE_DIRECTORY + "models/";
+    @SidedProxy(clientSide="genericminecraftmod.proxy.ClientProxy", serverSide="genericminecraftmod.proxy.CommonProxy")
+    public static CommonProxy proxy;
 
     public static final CreativeTabs TAB = new GenericCreativeTab("GenericMinecraftMod");
 
@@ -38,7 +34,7 @@ public class GenericMinecraftMod
 
     private static void RegisterOres() {
         blockGenericModOre = new GenericOreBlock();
-        GameRegistry.registerBlock(blockGenericModOre, blockGenericModOre.getUnlocalizedName().substring(5));
+        GameRegistry.registerBlock(blockGenericModOre, blockGenericModOre.getUnlocalizedName());
         System.out.println(blockGenericModOre.getItemIconName());
     }
 

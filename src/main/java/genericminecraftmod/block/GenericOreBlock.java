@@ -1,8 +1,5 @@
 package genericminecraftmod.block;
 
-/**
- * Created by AndrewD on 23/01/2015.
- */
 import genericminecraftmod.GenericMinecraftMod;
 import net.minecraft.block.material.Material;
 

@@ -1,8 +1,5 @@
 package genericminecraftmod;
 
-/**
- * Created by AndrewD on 23/01/2015.
- */
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
