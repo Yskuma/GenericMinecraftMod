@@ -6,6 +6,7 @@ import genericminecraftmod.GenericMinecraftMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -27,7 +28,7 @@ public class BlockGenericCropCore extends BlockBush implements IGrowable {
 
     public BlockGenericCropCore()
     {
-        // Basic block setup
+        super();
         setTickRandomly(true);
         float f = 0.5F;
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
@@ -46,19 +47,9 @@ public class BlockGenericCropCore extends BlockBush implements IGrowable {
     @Override
     public int getRenderType()
     {
-        return 1; // Cross like flowers
+        return 1; // Cross like
     }
-    /*
-        @SideOnly(Side.CLIENT)
-        public void registerBlockIcons(IIconRegister iconRegister) {
-            this.iconArray = new IIcon[this.getNumGrowthStages() + 1];
 
-            for(int i = 0; i < this.iconArray.length; ++i) {
-                this.iconArray[i] = iconRegister.registerIcon(this.getTextureName() + "_stage_" + i);
-            }
-
-        }
-    */
     @Override
     protected boolean canPlaceBlockOn(Block block) {
         return block == Blocks.farmland;

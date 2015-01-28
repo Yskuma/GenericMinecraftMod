@@ -3,6 +3,7 @@ package genericminecraftmod.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import genericminecraftmod.GenericMinecraftMod;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
@@ -16,6 +17,7 @@ public class BlockGenericCrop extends BlockGenericCropCore {
 
     public BlockGenericCrop()
     {
+        super();
         // Basic block setup
         setBlockName("genericCrop");
         setBlockTextureName(GenericMinecraftMod.MODID + ":" + this.getUnlocalizedName() + "_0");
@@ -28,7 +30,7 @@ public class BlockGenericCrop extends BlockGenericCropCore {
     @Override
     public int quantityDropped(int parMetadata, int parFortune, Random parRand)
     {
-        return ((parMetadata+1)/2);
+        return parMetadata == maxGrowth ? 4 : 1;
     }
 
     @Override
@@ -43,9 +45,17 @@ public class BlockGenericCrop extends BlockGenericCropCore {
     {
         iIcon = new IIcon[maxGrowth+1];
 
-        for(int i = 0; i < maxGrowth; i++)
+        for(int i = 0; i < maxGrowth+1; i++)
         {
             iIcon[i] = parIIconRegister.registerIcon(GenericMinecraftMod.MODID + ":" + this.getUnlocalizedName() + "_" + (i/2));
         }
     }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public IIcon getIcon(int p_149691_1_, int meta)
+    {
+        return iIcon[meta];
+    }
+
 }
