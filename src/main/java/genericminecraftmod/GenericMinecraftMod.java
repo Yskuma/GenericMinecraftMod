@@ -1,10 +1,12 @@
 package genericminecraftmod;
 
 import cpw.mods.fml.common.SidedProxy;
+import genericminecraftmod.block.BlockGenericCrop;
 import genericminecraftmod.block.BlockGenericOre;
 import genericminecraftmod.block.BlockGenericFurnace;
 import cpw.mods.fml.common.registry.GameRegistry;
 import genericminecraftmod.item.ItemGenericIngot;
+import genericminecraftmod.item.ItemGenericSeeds;
 import genericminecraftmod.item.armor.ItemGenericBoots;
 import genericminecraftmod.item.armor.ItemGenericChest;
 import genericminecraftmod.item.armor.ItemGenericHelm;
@@ -45,8 +47,10 @@ public class GenericMinecraftMod
 
     public static Block blockGenericModOre;
     public static Block blockGenericModFurnace;
+    public static Block blockGenericCrop;
 
     public static Item itemGenericIngot;
+    public static Item itemGenericSeeds;
 
     public static Item itemGenericAxe;
     public static Item itemGenericPickaxe;
@@ -64,6 +68,7 @@ public class GenericMinecraftMod
     {
         RegisterOres();
         RegisterItems();
+        RegisterPlants();
 
         RegisterOreDict();
 
@@ -79,11 +84,21 @@ public class GenericMinecraftMod
         GameRegistry.registerBlock(blockGenericModOre, blockGenericModOre.getUnlocalizedName());
     }
 
+    private static void RegisterPlants() {
+        //Register
+        blockGenericCrop = new BlockGenericCrop();
+        GameRegistry.registerBlock(blockGenericCrop, blockGenericCrop.getUnlocalizedName());
+    }
+
     private static void RegisterItems() {
 
         //Ingot
         itemGenericIngot = new ItemGenericIngot();
         GameRegistry.registerItem(itemGenericIngot, itemGenericIngot.getUnlocalizedName());
+
+        //Seeds
+        itemGenericSeeds = new ItemGenericSeeds();
+        GameRegistry.registerItem(itemGenericSeeds, itemGenericSeeds.getUnlocalizedName());
 
         //Tools
         itemGenericAxe = new ItemGenericAxe();
