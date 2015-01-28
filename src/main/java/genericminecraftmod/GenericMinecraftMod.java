@@ -1,10 +1,10 @@
 package genericminecraftmod;
 
 import cpw.mods.fml.common.SidedProxy;
-import genericminecraftmod.block.GenericOreBlock;
-import genericminecraftmod.block.GenericFurnaceBlock;
+import genericminecraftmod.block.BlockGenericOre;
+import genericminecraftmod.block.BlockGenericFurnace;
 import cpw.mods.fml.common.registry.GameRegistry;
-import genericminecraftmod.item.GenericIngot;
+import genericminecraftmod.item.ItemGenericIngot;
 import genericminecraftmod.item.armor.ItemGenericBoots;
 import genericminecraftmod.item.armor.ItemGenericChest;
 import genericminecraftmod.item.armor.ItemGenericHelm;
@@ -22,6 +22,7 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 @Mod(modid = GenericMinecraftMod.MODID, version = GenericMinecraftMod.VERSION)
@@ -45,7 +46,7 @@ public class GenericMinecraftMod
     public static Block blockGenericModOre;
     public static Block blockGenericModFurnace;
 
-    public static Item itemGenericModIngot;
+    public static Item itemGenericIngot;
 
     public static Item itemGenericAxe;
     public static Item itemGenericPickaxe;
@@ -62,21 +63,29 @@ public class GenericMinecraftMod
     public void init(FMLInitializationEvent event)
     {
         RegisterOres();
-        RegisterMachines();
         RegisterItems();
+
+        RegisterOreDict();
+
+        RegisterMachines();
+
         RegisterCraftingRecipes();
         RegisterSmeltingRecipes();
     }
 
     private static void RegisterOres() {
-        blockGenericModOre = new GenericOreBlock();
+        //Register
+        blockGenericModOre = new BlockGenericOre();
         GameRegistry.registerBlock(blockGenericModOre, blockGenericModOre.getUnlocalizedName());
     }
 
     private static void RegisterItems() {
-        itemGenericModIngot = new GenericIngot();
-        GameRegistry.registerItem(itemGenericModIngot, itemGenericModIngot.getUnlocalizedName());
 
+        //Ingot
+        itemGenericIngot = new ItemGenericIngot();
+        GameRegistry.registerItem(itemGenericIngot, itemGenericIngot.getUnlocalizedName());
+
+        //Tools
         itemGenericAxe = new ItemGenericAxe();
         GameRegistry.registerItem(itemGenericAxe , itemGenericAxe.getUnlocalizedName());
 
@@ -92,6 +101,7 @@ public class GenericMinecraftMod
         itemGenericSword = new ItemGenericSword();
         GameRegistry.registerItem(itemGenericSword, itemGenericSword.getUnlocalizedName());
 
+        //Armor
         itemGenericHelm = new ItemGenericHelm();
         GameRegistry.registerItem(itemGenericHelm, itemGenericHelm.getUnlocalizedName());
 
@@ -105,27 +115,35 @@ public class GenericMinecraftMod
         GameRegistry.registerItem(itemGenericBoots, itemGenericBoots.getUnlocalizedName());
     }
 
+    private static void RegisterOreDict() {
+        //Register
+        OreDictionary.registerOre("oreGeneric", new ItemStack(blockGenericModOre, 1));
+        OreDictionary.registerOre("ingotGeneric", new ItemStack(itemGenericIngot, 1));
+    }
+
     private static void RegisterMachines() {
-        blockGenericModFurnace = new GenericFurnaceBlock();
+        blockGenericModFurnace = new BlockGenericFurnace();
         GameRegistry.registerBlock(blockGenericModFurnace, blockGenericModFurnace.getUnlocalizedName());
     }
 
     private static void RegisterCraftingRecipes(){
-        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericAxe, "II ", "IS ", " S ", 'I', itemGenericModIngot, 'S', new ItemStack(Items.stick, 1, 0)));
-        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericHoe, "II ", " S ", " S ", 'I', itemGenericModIngot, 'S', new ItemStack(Items.stick, 1, 0)));
-        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericPickaxe, "III", " S ", " S ", 'I', itemGenericModIngot, 'S', new ItemStack(Items.stick, 1, 0)));
-        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericShovel, " I ", " S ", " S ", 'I', itemGenericModIngot, 'S', new ItemStack(Items.stick, 1, 0)));
-        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericSword, " I ", " I ", " S ", 'I', itemGenericModIngot, 'S', new ItemStack(Items.stick, 1, 0)));
+        //Tools
+        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericAxe, "II ", "IS ", " S ", 'I', "ingotGeneric", 'S', "stickWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericHoe, "II ", " S ", " S ", 'I', "ingotGeneric", 'S', "stickWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericPickaxe, "III", " S ", " S ", 'I', "ingotGeneric", 'S', "stickWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericShovel, " I ", " S ", " S ", 'I', "ingotGeneric", 'S', "stickWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericSword, " I ", " I ", " S ", 'I', "ingotGeneric", 'S', "stickWood"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericHelm, "III", "I I", "   ", 'I', itemGenericModIngot));
-        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericChestplate, "I I", "III", "III", 'I', itemGenericModIngot));
-        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericLegs, "III", "I I", "I I", 'I', itemGenericModIngot));
-        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericBoots, "   ", "I I", "I I", 'I', itemGenericModIngot));
+        //Armor
+        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericHelm, "III", "I I", "   ", 'I', "ingotGeneric"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericChestplate, "I I", "III", "III", 'I', "ingotGeneric"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericLegs, "III", "I I", "I I", 'I', "ingotGeneric"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(itemGenericBoots, "   ", "I I", "I I", 'I', "ingotGeneric"));
 
     }
 
     private static void RegisterSmeltingRecipes(){
-        GameRegistry.addSmelting(blockGenericModOre, new ItemStack(itemGenericModIngot), 1);
+        GameRegistry.addSmelting(blockGenericModOre, new ItemStack(itemGenericIngot), 1);
     }
 
 

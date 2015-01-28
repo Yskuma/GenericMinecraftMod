@@ -6,9 +6,9 @@ import genericminecraftmod.GenericMinecraftMod;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 
-public class GenericIngot extends Item {
+public class ItemGenericIngot extends Item {
 
-    public GenericIngot() {
+    public ItemGenericIngot() {
         this.setUnlocalizedName("genericIngot");
         this.setCreativeTab(GenericMinecraftMod.TAB);
     }

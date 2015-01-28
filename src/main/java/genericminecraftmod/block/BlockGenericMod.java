@@ -8,10 +8,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
-public class GenericModBlock extends Block {
+public class BlockGenericMod extends Block {
 
-    public GenericModBlock(Material par2Material) {
+    public BlockGenericMod(Material par2Material) {
         super(par2Material);
+
         if(registerInCreative())
             setCreativeTab(GenericMinecraftMod.TAB);
     }
