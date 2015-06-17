@@ -1,10 +1,13 @@
 package genericminecraftmod;
 
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import genericminecraftmod.block.BlockGenericCrop;
 import genericminecraftmod.block.BlockGenericOre;
 import genericminecraftmod.block.BlockGenericFurnace;
 import cpw.mods.fml.common.registry.GameRegistry;
+import genericminecraftmod.block.BlockGenericSmallContainer;
+import genericminecraftmod.handler.GuiHandler;
 import genericminecraftmod.item.ItemGenericIngot;
 import genericminecraftmod.item.ItemGenericSeeds;
 import genericminecraftmod.item.armor.ItemGenericBoots;
@@ -13,6 +16,7 @@ import genericminecraftmod.item.armor.ItemGenericHelm;
 import genericminecraftmod.item.armor.ItemGenericLegs;
 import genericminecraftmod.item.tools.*;
 import genericminecraftmod.proxy.CommonProxy;
+import genericminecraftmod.tile.TileEntityGenericSmallContainer;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.Mod;
@@ -23,6 +27,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -38,6 +43,9 @@ public class GenericMinecraftMod
 
     public static final CreativeTabs TAB = new GenericCreativeTab("GenericMinecraftMod");
 
+    @Mod.Instance("genericminecraftmod")
+    public static GenericMinecraftMod instance;
+
     //public static final String LANGUAGE_PATH = RESOURCE_PATH + "languages/";
     //private static final String[] LANGUAGES_SUPPORTED = new String[] { "en_US"};
 
@@ -45,9 +53,12 @@ public class GenericMinecraftMod
     public static ArmorMaterial genericArmorMaterial = EnumHelper.addArmorMaterial("GENERIC", 18, new int[]{2, 6, 5, 2}, 8);
     public static ToolMaterial genericToolMaterial = EnumHelper.addToolMaterial("GENERIC", 2, 300, 6.6F, 2.5F, 8);
 
+    //public static TileEntity tileEntityGenericSmallContainer;
+
     public static Block blockGenericModOre;
     public static Block blockGenericModFurnace;
     public static Block blockGenericCrop;
+    public static Block blockGenericSmallContainer;
 
     public static Item itemGenericIngot;
     public static Item itemGenericSeeds;
@@ -66,6 +77,12 @@ public class GenericMinecraftMod
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
+
+        blockGenericSmallContainer = new BlockGenericSmallContainer();
+        GameRegistry.registerBlock(blockGenericSmallContainer, blockGenericSmallContainer.getUnlocalizedName());
+
+        RegisterTileEntities();
+
         RegisterOres();
         RegisterItems();
         RegisterPlants();
@@ -76,12 +93,20 @@ public class GenericMinecraftMod
 
         RegisterCraftingRecipes();
         RegisterSmeltingRecipes();
+
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+    }
+
+    private void RegisterTileEntities() {
+        //Register
+        blockGenericModOre = new BlockGenericOre();
+        GameRegistry.registerBlock(blockGenericModOre, blockGenericModOre.getUnlocalizedName());
     }
 
     private static void RegisterOres() {
         //Register
-        blockGenericModOre = new BlockGenericOre();
-        GameRegistry.registerBlock(blockGenericModOre, blockGenericModOre.getUnlocalizedName());
+        //tileEntityGenericSmallContainer = new TileEntityGenericSmallContainer();
+        GameRegistry.registerTileEntity(TileEntityGenericSmallContainer.class, "teGenericSmallContainer");
     }
 
     private static void RegisterPlants() {
